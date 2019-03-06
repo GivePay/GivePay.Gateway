@@ -13,7 +13,7 @@ Install the library with [Nuget](https://nuget.org/):
 |:------|:-----:|
 |GivePay.Gateway|[![NuGet version](https://badge.fury.io/nu/GivePay.Gateway.svg)](https://badge.fury.io/nu/GivePay.Gateway)|
 |GivePay.Gateway.OAuth|[![NuGet version](https://badge.fury.io/nu/GivePay.Gateway.OAuth.svg)](https://badge.fury.io/nu/GivePay.Gateway.OAuth)|
-|GivePay.RestSharp.Newtonsoft|[![NuGet version](https://badge.fury.io/nu/GivePay.RestSharp.Newtonsoft.svg)](https://badge.fury.io/nu/GivePay.RestSharp.Newtonsofth)|
+|GivePay.RestSharp.Newtonsoft|[![NuGet version](https://badge.fury.io/nu/GivePay.RestSharp.Newtonsoft.svg)](https://badge.fury.io/nu/GivePay.RestSharp.Newtonsoft)|
 
 ## Usage
 
