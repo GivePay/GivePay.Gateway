@@ -3,7 +3,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/t6ijhamg9mvk266r?svg=true)](https://ci.appveyor.com/project/willseward/givepay-gateway)
 
 
-A library for interacting with FlatRatePay transactions APIs with the GivePay Gateway.
+A library for interacting with FlatRatePay transaction APIs with the GivePay Gateway.
 
 ## Installation
 
