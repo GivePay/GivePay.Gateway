@@ -1,7 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IdentityModel" Version="3.10.6" />
+    <PackageReference Include="RestSharp.Newtonsoft.Json" Version="1.5.1" />
+    <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GivePay.Gateway.OAuth\GivePay.Gateway.OAuth.csproj" />
+  </ItemGroup>
 
 </Project>
