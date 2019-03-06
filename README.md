@@ -1,6 +1,7 @@
 # GivePay Gateway C#
 
-[![Build Status](https://travis-ci.org/GivePay/GivePay.Gateway.svg?branch=master)](https://travis-ci.org/GivePay/GivePay.Gateway)
+[![Build status](https://ci.appveyor.com/api/projects/status/t6ijhamg9mvk266r?svg=true)](https://ci.appveyor.com/project/willseward/givepay-gateway)
+
 
 A library for interacting with FlatRatePay transactions APIs with the GivePay Gateway.
 
