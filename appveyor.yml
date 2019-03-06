@@ -1,4 +1,4 @@
-version: 0.9.{build}
+version: 1.0.{build}
 image: Visual Studio 2017
 before_build:
 - ps: dotnet restore
@@ -12,6 +12,6 @@ test: off
 deploy:
 - provider: NuGet
   api_key:
-    secure: 33iSDCwU3hJiKGPLq6Vv6lrZnJcDfdGBhvuGh9FlIwQjqAKRkG2gtxt0FWf4n5Dg
+    secure: LBITkcScbPgP5WftIqwRGBWqq3hu1pmqNPPqLtl389roRodJ9nobmv81egohgKej
   on:
     APPVEYOR_REPO_TAG: true
