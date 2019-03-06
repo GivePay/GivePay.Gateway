@@ -11,6 +11,8 @@ Install the library with [Nuget](https://nuget.org/):
 |Package|Status|
 |:------|:-----:|
 |GivePay.Gateway|[![NuGet version](https://badge.fury.io/nu/GivePay.Gateway.svg)](https://badge.fury.io/nu/GivePay.Gateway)|
+|GivePay.Gateway.OAuth|[![NuGet version](https://badge.fury.io/nu/GivePay.Gateway.OAuth.svg)](https://badge.fury.io/nu/GivePay.Gateway.OAuth)|
+|GivePay.RestSharp.Newtonsoft|[![NuGet version](https://badge.fury.io/nu/GivePay.RestSharp.Newtonsoft.svg)](https://badge.fury.io/nu/GivePay.RestSharp.Newtonsofth)|
 
 ## Usage
 
@@ -35,7 +37,7 @@ var saleRequest = new SaleRequest
     Card = new Card
     {
         CardPresent = false,
-        // The card's CVV/CVC/CVV3
+        // The card's CVV/CVC/CVV2
         Cvv = "xxx",
         ExpirationMonth = "12",
         ExpirationYear = "21",

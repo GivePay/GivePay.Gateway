@@ -1,6 +1,7 @@
 language: csharp
 mono: none
 os: linux
+distro: xenial
 dotnet: 2.2.104-1
 solution: GivePay.Gateway.sln
 script:
