@@ -23,11 +23,13 @@ Simple sale transaction example:
 using GivePay.Gateway.Transactions;
 using GivePay.Gateway.Transactions.Client;
 
+// 1. Configure the transaction API client. Use the values provided in the portal for the variables below.
 var _client = new DefaultGatewayClientBuilder()
     .WithBaseUri(new Uri(baseUrl))
     .WithOAuthCredentials(new Uri(authority), clientId, clientSecret, scopes)
     .Build();
 
+// 2. Create the Sale request
 var saleRequest = new SaleRequest
 {
     Amount = new Amount
@@ -68,6 +70,7 @@ var saleRequest = new SaleRequest
     }
 };
 
+// 3. Make a call to the API
 var response = await _client.AuthorizeAndCaptureAmountAsync(saleRequest);
 Console.WriteLine(response.TransactionId);
 ```
