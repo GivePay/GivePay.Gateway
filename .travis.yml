@@ -1,0 +1,20 @@
+language: csharp
+mono: none
+os: linux
+dist: trusty
+dotnet: 2.2.0
+solution: GivePay.Gateway.sln
+script:
+- dotnet pack -c Release
+deploy:
+  skip_cleanup: true
+  provider: script
+  script:
+  - dotnet nuget push GivePay.Gateway/bin/Release/*.nupkg --api-key $NUGET_API_KEY
+  - dotnet nuget push GivePay.Gateway.OAuth/bin/Release/*.nupkg --api-key $NUGET_API_KEY
+  on:
+    tags: true
+    condition: "$TRAVIS_TAG =~ ^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$"
+env:
+  global:
+    secure: pbW/WoTQh8GmJdYekbTZ+wbVfXO/KRj0y1zKvwfwYuuR1WCaA9lY+BBkGbMfXVa5EmRwloMGuGH4A6g4GKbShqcn0sKNig1z0cEVfVeRJZldCS3pwlLD++JYfkoFWqPOyxPWVCzaCrzloXcUvTsB8SwwKCq8+Z4GUILDj/x61yZPnYJEwB2AL+fWaOfVZtwbyUWkRYJ2RmiVMEe3diJKR70MkDotomFzZyp1GQDEawZSNtzObN3N9x//mWwriH517agbBkSW71c+/+5MxrA4mizf9/eTfW0u+fjE/Sf9XqJvarEr6sbNIFzKwXaEifsZ2EqZU/79oD3jtlHujobaXSTSr9KG7fS/S2h+WWnR8q1IGKnlTAOz3NecpTeiNZ3T9kxRA1VkE01pcw773nie+HOT1TlCp72IdOsQgX3UOM+XHGW+wHpIRSjxKkNfRg1/5eZJ6L6tcYjIxIOA3Ggxs07wNhUH0yOc1vh4WYQO36RvIXhwOcZDSAsJffZUVNCpaLiX69hYrtxDzil8PWTq7OyqinizuxtnP7CW9Pns7D16ZMq1jwz2nB46ijXSmxSuZwa86NZD10tkR/aINhmT7ENEWp7OQOvW1SyUUhCSBHg2k45ZkRQeFSbdAU+I3sPhexy81p9tut7egb6RCIa2pDajxZdynaa1TkFVFD6STfs=
