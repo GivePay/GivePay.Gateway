@@ -2,7 +2,7 @@ language: csharp
 mono: none
 os: linux
 dist: trusty
-dotnet: 2.1.502
+dotnet: 2.2.104-1
 solution: GivePay.Gateway.sln
 script:
 - dotnet pack -c Release
