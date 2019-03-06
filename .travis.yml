@@ -11,6 +11,7 @@ deploy:
   script:
   - dotnet nuget push GivePay.Gateway/bin/Release/*.nupkg --api-key $NUGET_API_KEY
   - dotnet nuget push GivePay.Gateway.OAuth/bin/Release/*.nupkg --api-key $NUGET_API_KEY
+  - dotnet nuget push GivePay.ReestSharp.Newtonsoft/bin/Release/*.nupkg --api-key $NUGET_API_KEY
   on:
     tags: true
     condition: "$TRAVIS_TAG =~ ^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$"

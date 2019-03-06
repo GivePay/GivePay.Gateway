@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GivePay.RestSharp.Newtonsoft" Version="0.0.16" />
+    <ProjectReference Include="..\GivePay.RestSharp.Newtonsoft\GivePay.RestSharp.Newtonsoft.csproj" />
   </ItemGroup>
 
 </Project>
