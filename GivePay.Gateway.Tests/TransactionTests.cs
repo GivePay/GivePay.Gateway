@@ -108,6 +108,10 @@ namespace GivePay.Gateway.Tests
                     {
                         PostalCode = "76132"
                     }
+                },
+                Order = new Order
+                {
+                    OrderNumber = "testing"
                 }
             };
 
