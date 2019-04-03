@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <PackageVersion>1.1.1</PackageVersion>
+    <PackageVersion>1.1.2</PackageVersion>
     <PackageProjectUrl>https://github.com/GivePay/GivePay.Gateway</PackageProjectUrl>
     <PackageId>GivePay.Gateway.OAuth</PackageId>
     <Authors>William Ward</Authors>

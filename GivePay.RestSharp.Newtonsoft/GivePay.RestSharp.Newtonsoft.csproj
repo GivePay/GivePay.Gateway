@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.0;net461;netcoreapp2.1;netcoreapp2.2</TargetFrameworks>
-    <PackageVersion>1.1.1</PackageVersion>
+    <PackageVersion>1.1.2</PackageVersion>
     <Authors>William Ward</Authors>
     <Company>GivePay Commerce, LLC</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
