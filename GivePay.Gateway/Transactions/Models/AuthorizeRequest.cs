@@ -24,5 +24,8 @@ namespace GivePay.Gateway.Transactions
 
         [DataMember(Name = "payer")]
         public Payer Payer { get; set; }
+
+        [DataMember(Name = "order")]
+        public Order Order { get; set; }
     }
 }
