@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using GivePay.Gateway.Builder;
 using GivePay.Gateway.Shared;
@@ -78,6 +80,56 @@ namespace GivePay.Gateway.Tests
             var response = await _client.AuthorizeAmountAsync(authorization);
             Assert.IsNotNull(response.TransactionId);
             Assert.IsNotNull(response.AuthCode);
+        }
+
+        //[TestMethod]
+        public async Task DoABunchOfAuths_Test()
+        {
+            var authorization = new AuthorizeRequest
+            {
+                Amount = new Amount
+                {
+                    BaseAmount = 1000
+                },
+                Card = new Card
+                {
+                    CardPresent = false,
+                    Cvv = "123",
+                    ExpirationMonth = "12",
+                    ExpirationYear = "21",
+                    Pan = "5105105105105100"
+                },
+                Mid = _merchantId,
+                Terminal = new Terminal
+                {
+                    EntryType = EntryType.Keypad,
+                    TerminalId = _terminalId,
+                    TerminalType = TerminalType.ECommerce
+                },
+                Payer = new Payer
+                {
+                    BillingAddress = new Address
+                    {
+                        PostalCode = "76132"
+                    }
+                }
+            };
+
+            var tasks = Enumerable.Range(0, 500).Select(n => _client.AuthorizeAmountAsync(authorization));
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            try
+            {
+                await Task.WhenAll(tasks);
+            }
+            catch
+            {
+
+            }
+
+            stopwatch.Stop();
         }
 
         [TestMethod]
