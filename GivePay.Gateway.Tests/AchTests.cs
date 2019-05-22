@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using GivePay.Gateway.Ach.Client;
 using GivePay.Gateway.Ach.Models;
@@ -70,6 +72,59 @@ namespace GivePay.Gateway.Tests
             var response = await _client.PostAchAsync(ach);
             Assert.IsNotNull(response.TransactionReference);
             Assert.IsNotNull(response.AuthCode);
+        }
+
+        //[TestMethod]
+        public async Task DoABunchOfAch_Test()
+        {
+            var ach = new AchRequest
+            {
+                Amount = 1000,
+                Mid = _merchantId,
+                Terminal = new Terminal
+                {
+                    EntryType = EntryType.Keypad,
+                    TerminalId = _terminalId,
+                    TerminalType = TerminalType.ECommerce
+                },
+                Account = new BankAccountInformation
+                {
+                    Aba = "031000503",
+                    AccountNumber = "1412423",
+                    BankName = "A bank",
+                    AccountVerification = new AccountVerification
+                    {
+                        AccountHolderName = "john doe"
+                    }
+                }
+            };
+
+            try
+            {
+                await _client.PostAchAsync(ach);
+            }
+            catch
+            {
+
+            }
+
+            var tasks = Enumerable.Range(0, 500).Select(n => _client.PostAchAsync(ach));
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            try
+            {
+                await Task.WhenAll(tasks);
+            }
+            catch
+            {
+
+            }
+
+            stopwatch.Stop();
+
+            Console.WriteLine($"{stopwatch.Elapsed}");
         }
 
         [TestMethod]
