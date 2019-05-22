@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using GivePay.Gateway.Builder;
+using GivePay.Gateway.Shared;
 using GivePay.Gateway.Transactions;
 using GivePay.Gateway.Transactions.Client;
 using Microsoft.Extensions.Configuration;
@@ -37,7 +39,7 @@ namespace GivePay.Gateway.Tests
             _client = new DefaultGatewayClientBuilder()
                 .WithBaseUri(new Uri(baseUrl))
                 .WithOAuthCredentials(new Uri(authority), clientId, clientSecret, scopes)
-                .Build();
+                .BuildTransactionClient();
         }
 
         [TestMethod]
@@ -130,7 +132,7 @@ namespace GivePay.Gateway.Tests
             };
 
             var captureResponse = await _client.CaptureAmountAsync(capture);
-            Assert.AreEqual(response.TransactionId, capture.TransactionId);
+            Assert.AreEqual(response.TransactionId, captureResponse.TransactionId);
         }
 
         [TestMethod]

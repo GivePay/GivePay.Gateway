@@ -1,6 +1,8 @@
 ﻿using System;
+using GivePay.Gateway.Ach.Client;
+using GivePay.Gateway.Transactions.Client;
 
-namespace GivePay.Gateway.Transactions.Client
+namespace GivePay.Gateway.Builder
 {
     public interface IGatewayClientBuilder
     {
@@ -21,9 +23,15 @@ namespace GivePay.Gateway.Transactions.Client
         IGatewayClientBuilder WithOAuthCredentials(Uri authority, string clientId, string clientSecret, string scopes);
 
         /// <summary>
-        /// Creates a new client instance
+        /// Creates a new transaction client instance
         /// </summary>
         /// <returns></returns>
-        ITransactionClient Build();
+        ITransactionClient BuildTransactionClient();
+
+        /// <summary>
+        /// Creates a new transaction client instance
+        /// </summary>
+        /// <returns></returns>
+        IAchClient BuildAchClient();
     }
 }

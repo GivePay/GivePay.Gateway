@@ -15,5 +15,9 @@
         public static string TransactionsApiV1Tokenize = "api/v1/transactions/tokenize";
 
         public static string TokenEndpoint = "/connect/token";
+
+        public static string AchApiV1Post = "api/v1/ach/post";
+
+        public static string AchApiV1Inquire(string mid, string tid, string transactionId) => $"api/v1/ach/inquire?mid={mid}&tid={tid}&transaction_id={transactionId}";
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace GivePay.Gateway.Transactions
+namespace GivePay.Gateway
 {
     [DataContract(Name = "order")]
     public sealed class Order
