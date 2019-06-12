@@ -1,7 +1,9 @@
 ﻿using System;
+using GivePay.Gateway.Ach.Client;
 using GivePay.Gateway.OAuth;
+using GivePay.Gateway.Transactions.Client;
 
-namespace GivePay.Gateway.Transactions.Client
+namespace GivePay.Gateway.Builder
 {
     public sealed class DefaultGatewayClientBuilder : IGatewayClientBuilder
     {
@@ -55,7 +57,7 @@ namespace GivePay.Gateway.Transactions.Client
             }
         }
 
-        public ITransactionClient Build()
+        public ITransactionClient BuildTransactionClient()
         {
             ThrowValidationExceptions();
 
@@ -63,6 +65,19 @@ namespace GivePay.Gateway.Transactions.Client
             accessTokenUriBuilder.Path = Urls.TokenEndpoint;
 
             return new DefaultTransactionClient(
+                BaseUri,
+                new DefaultAccessTokenProvider(ClientId, ClientSecret, Scopes, accessTokenUriBuilder.Uri)
+            );
+        }
+
+        public IAchClient BuildAchClient()
+        {
+            ThrowValidationExceptions();
+
+            var accessTokenUriBuilder = new UriBuilder(OAuthAuthority);
+            accessTokenUriBuilder.Path = Urls.TokenEndpoint;
+
+            return new DefaultAchClient(
                 BaseUri,
                 new DefaultAccessTokenProvider(ClientId, ClientSecret, Scopes, accessTokenUriBuilder.Uri)
             );

@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <PackageVersion>1.1.2</PackageVersion>
+    <PackageVersion>1.2.0</PackageVersion>
+    <Version>1.2.0</Version>
     <PackageProjectUrl>https://github.com/GivePay/GivePay.Gateway</PackageProjectUrl>
     <PackageId>GivePay.Gateway</PackageId>
     <Authors>William Ward</Authors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="IdentityModel" Version="3.10.6" />
     <PackageReference Include="RestSharp.Newtonsoft.Json" Version="1.5.1" />
     <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
   </ItemGroup>

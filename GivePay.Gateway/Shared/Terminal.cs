@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace GivePay.Gateway.Transactions
+namespace GivePay.Gateway.Shared
 {
     [DataContract(Name = "terminal")]
     public sealed class Terminal

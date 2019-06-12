@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace GivePay.Gateway.Transactions
+namespace GivePay.Gateway
 {
     [DataContract(Name = "amount")]
     public sealed class Amount

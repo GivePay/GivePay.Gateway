@@ -17,9 +17,11 @@ Install the library with [Nuget](https://nuget.org/):
 
 ## Usage
 
-Simple sale transaction example:
+_Simple sale transaction_
 
 ```c#
+using GivePay.Gateway.Builder;
+using GivePay.Gateway.Shared;
 using GivePay.Gateway.Transactions;
 using GivePay.Gateway.Transactions.Client;
 
@@ -27,7 +29,7 @@ using GivePay.Gateway.Transactions.Client;
 var _client = new DefaultGatewayClientBuilder()
     .WithBaseUri(new Uri(baseUrl))
     .WithOAuthCredentials(new Uri(authority), clientId, clientSecret, scopes)
-    .Build();
+    .BuildTransactionClient();
 
 // 2. Create the Sale request
 var saleRequest = new SaleRequest
@@ -75,16 +77,18 @@ var response = await _client.AuthorizeAndCaptureAmountAsync(saleRequest);
 Console.WriteLine(response.TransactionId);
 ```
 
-Voiding a transaction
+_Voiding a transaction_
 
 ```c#
+using GivePay.Gateway.Builder;
+using GivePay.Gateway.Shared;
 using GivePay.Gateway.Transactions;
 using GivePay.Gateway.Transactions.Client;
 
 var _client = new DefaultGatewayClientBuilder()
     .WithBaseUri(new Uri(baseUrl))
     .WithOAuthCredentials(new Uri(authority), clientId, clientSecret, scopes)
-    .Build();
+    .BuildTransactionClient();
 
 var voidRequest = new VoidRequest
 {
@@ -108,6 +112,46 @@ var voidRequest = new VoidRequest
 var response = await _client.VoidTransactionAsync(voidRequest);
 Console.WriteLine(response.TransactionId);
 ```
+
+_ACH Transaction_
+
+```c#
+using GivePay.Gateway.Ach.Client;
+using GivePay.Gateway.Ach.Models;
+using GivePay.Gateway.Builder;
+using GivePay.Gateway.Shared;
+
+var _client = new DefaultGatewayClientBuilder()
+    .WithBaseUri(new Uri(baseUrl))
+    .WithOAuthCredentials(new Uri(authority), clientId, clientSecret, scopes)
+    .BuildAchClient();
+
+var ach = new AchRequest
+{
+    Amount = 1000,  // $10
+    Mid = _merchantId,
+    Terminal = new Terminal
+    {
+        EntryType = EntryType.Keypad,
+        TerminalId = _terminalId,
+        TerminalType = TerminalType.ECommerce
+    },
+    Account = new BankAccountInformation
+    {
+        Aba = "031000503",
+        AccountNumber = "1412423",
+        BankName = "My State Bank",
+        AccountVerification = new AccountVerification
+        {
+            AccountHolderName = "John Doe"
+        }
+    }
+};
+
+var response = await _client.PostAchAsync(ach);
+Console.WriteLine(response.TransactionReference);
+```
+
 
 ## License
 

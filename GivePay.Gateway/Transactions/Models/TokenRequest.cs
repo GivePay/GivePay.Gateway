@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using GivePay.Gateway.Shared;
 
 namespace GivePay.Gateway.Transactions
 {
