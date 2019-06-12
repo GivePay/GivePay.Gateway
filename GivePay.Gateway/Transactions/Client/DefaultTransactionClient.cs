@@ -13,6 +13,7 @@ namespace GivePay.Gateway.Transactions.Client
         {
 
         }
+
         public Task<SaleResponse> AuthorizeAndCaptureAmountAsync(SaleRequest saleRequest)
         {
             var request = new RestRequest(Urls.TransactionsApiV1Sale, Method.POST);

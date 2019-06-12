@@ -1,5 +1,9 @@
 using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
+using GivePay.Gateway.Builder;
+using GivePay.Gateway.Shared;
 using GivePay.Gateway.Transactions;
 using GivePay.Gateway.Transactions.Client;
 using Microsoft.Extensions.Configuration;
@@ -37,7 +41,7 @@ namespace GivePay.Gateway.Tests
             _client = new DefaultGatewayClientBuilder()
                 .WithBaseUri(new Uri(baseUrl))
                 .WithOAuthCredentials(new Uri(authority), clientId, clientSecret, scopes)
-                .Build();
+                .BuildTransactionClient();
         }
 
         [TestMethod]
@@ -76,6 +80,56 @@ namespace GivePay.Gateway.Tests
             var response = await _client.AuthorizeAmountAsync(authorization);
             Assert.IsNotNull(response.TransactionId);
             Assert.IsNotNull(response.AuthCode);
+        }
+
+        //[TestMethod]
+        public async Task DoABunchOfAuths_Test()
+        {
+            var authorization = new AuthorizeRequest
+            {
+                Amount = new Amount
+                {
+                    BaseAmount = 1000
+                },
+                Card = new Card
+                {
+                    CardPresent = false,
+                    Cvv = "123",
+                    ExpirationMonth = "12",
+                    ExpirationYear = "21",
+                    Pan = "5105105105105100"
+                },
+                Mid = _merchantId,
+                Terminal = new Terminal
+                {
+                    EntryType = EntryType.Keypad,
+                    TerminalId = _terminalId,
+                    TerminalType = TerminalType.ECommerce
+                },
+                Payer = new Payer
+                {
+                    BillingAddress = new Address
+                    {
+                        PostalCode = "76132"
+                    }
+                }
+            };
+
+            var tasks = Enumerable.Range(0, 500).Select(n => _client.AuthorizeAmountAsync(authorization));
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            try
+            {
+                await Task.WhenAll(tasks);
+            }
+            catch
+            {
+
+            }
+
+            stopwatch.Stop();
         }
 
         [TestMethod]
@@ -130,7 +184,7 @@ namespace GivePay.Gateway.Tests
             };
 
             var captureResponse = await _client.CaptureAmountAsync(capture);
-            Assert.AreEqual(response.TransactionId, capture.TransactionId);
+            Assert.IsNotNull(capture.TransactionId);
         }
 
         [TestMethod]

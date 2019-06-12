@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace GivePay.Gateway.Transactions
+namespace GivePay.Gateway
 {
     [DataContract(Name = "card")]
     public sealed class Card : IValidatableObject

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace GivePay.Gateway.Transactions
+namespace GivePay.Gateway
 {
     public enum TransactionType
     {
